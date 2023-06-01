@@ -1,15 +1,18 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect
 from signal_transformer import get_demand_data
 from flasgger import Swagger
 
 app = Flask(__name__)
 swagger = Swagger(app)
 
+@app.route("/", methods=['GET'])
+def root():
+         return redirect("/apidocs/")
 
 @app.route('/frequency-spectrum', methods=['GET'])
 def get_freq():
     """
-    Converts spanish power demand signal data during 02/09/2018-06/10/2018 from its original domain (time) to a representation in the frequency domain.
+    Converts Spanish power demand signal data during 02/09/2018-06/10/2018 from its original domain (time) to a representation in the frequency domain.
     ---
     responses:
       200:

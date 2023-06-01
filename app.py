@@ -1,6 +1,9 @@
-from flask import Flask, jsonify, redirect
+from flask import Flask, jsonify, redirect, render_template
 from signal_transformer import get_demand_data
 from flasgger import Swagger
+import plotly.graph_objs as go
+import json
+import plotly.utils
 
 app = Flask(__name__)
 template = {
@@ -20,6 +23,36 @@ template = {
 swagger = Swagger(app, template=template)
 
 
+@app.route('/plot/', methods=['GET'])
+def plot():
+    
+    result = get_demand_data()
+    amplitudes = result["amplitudes"]
+    frequencies = result["frequencies"]
+
+    data = [
+        go.Scatter(
+            x=frequencies,
+            y=amplitudes,
+        )
+    ]
+    layout = go.Layout(
+        title='Frequency Spectrum',
+        xaxis=dict(title='Frequencies'),
+        yaxis=dict(title='Amplitudes'),
+        autosize=False,
+        width=1200,
+        height=600,
+        margin=dict(l=50, r=50, t=50, b=50),
+        hovermode='closest',
+    )
+    fig = go.Figure(data=data, layout=layout)
+
+    plot_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template('plot.html', plot_json=plot_json)
+
+
 @app.route("/", methods=['GET'])
 def root():
     return redirect('/apidocs/')
@@ -32,7 +65,7 @@ def get_freq():
     ---
     responses:
       200:
-        description:  Frequency and amplitude values after applying FFT
+        description:  Frequency and amplitude values after applying FFT.
         schema:
           type: object
           properties:

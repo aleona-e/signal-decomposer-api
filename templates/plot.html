@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Frequency Spectrum Plot</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <h1>Frequency Spectrum Plot</h1>
+    <div id="plot"></div>
+
+    <script>
+        const plotDiv = document.getElementById('plot');
+        const plotJson = {{ plot_json| safe }};
+
+        Plotly.plot(plotDiv, plotJson.data, plotJson.layout);
+    </script>
+</body>
+
+</html>

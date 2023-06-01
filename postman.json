@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "02f492b2-a75b-43e7-81f7-71619a1ddbfe",
+		"name": "Aiguasol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "aleona.pythonanywhere.com/frequency-spectrum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "aleona.pythonanywhere.com/frequency-spectrum",
+					"host": [
+						"aleona",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"frequency-spectrum"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

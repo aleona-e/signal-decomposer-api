@@ -3,16 +3,32 @@ from signal_transformer import get_demand_data
 from flasgger import Swagger
 
 app = Flask(__name__)
-swagger = Swagger(app)
+template = {
+    "swagger": "2.0",
+    "info": {
+        "title": "FFT Signal Decomposer API",
+        "description": "API documentation",
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {}
+}
+swagger = Swagger(app, template=template)
+
 
 @app.route("/", methods=['GET'])
 def root():
-         return redirect("/apidocs/")
+    return redirect('/apidocs/')
+
 
 @app.route('/frequency-spectrum', methods=['GET'])
 def get_freq():
     """
-    Converts Spanish power demand signal data during 02/09/2018-06/10/2018 from its original domain (time) to a representation in the frequency domain.
+    Converts spanish power demand signal data during 02/09/2018-06/10/2018 from its original domain (time) to a representation in the frequency domain .
     ---
     responses:
       200:
@@ -40,4 +56,3 @@ def get_freq():
 
 if __name__ == '__main__':
     app.run()
-

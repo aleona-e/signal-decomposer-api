@@ -1,7 +1,5 @@
 import requests
 import numpy as np
-import matplotlib.pyplot as plt
-
 
 def decompose_signal(json_data):
 
@@ -34,12 +32,4 @@ def get_demand_data():
         print("Error retrieving data:", response.status_code)
         return None
     
-
-def plot_results(frequencies, amplitudes):
-        
-        plt.plot(frequencies, amplitudes)
-        plt.xlabel("Frequency")
-        plt.ylabel("Amplitude")
-        plt.title("FFT - Frequency Domain")
-        plt.show()
 

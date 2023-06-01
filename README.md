@@ -51,7 +51,7 @@ To generate and view the plot of the frequency spectrum, you can access the "/pl
 https://aleona.pythonanywhere.com/plot
 
 ### Note
-Find the Postman collection in the /postmn.json file.
+Find the Postman collection in the /postman.json file.
 
 
 
